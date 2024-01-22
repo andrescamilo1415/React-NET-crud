@@ -15,6 +15,22 @@ const UsuarioService = {
       });
   },
 
+  EditarUsuario: function (usuario, auth) {
+    const config = {
+      headers: { Authorization: `${auth}` },
+    };
+    return axios
+      .post("/api/Deportista/EditDeportista", usuario, config)
+      .then((res) => {
+        alert(res.data);
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        return false;
+      });
+  },
+
   Listadousuarios: function (paginado, auth) {
     //     console.log('auth',auth);
     const config = {
@@ -31,6 +47,22 @@ const UsuarioService = {
       .catch((err) => {
         console.log(err);
         return null;
+      });
+  },
+
+  EliminarUsuario: function (id, auth) {
+    const config = {
+      headers: { Authorization: `${auth}` },
+    };
+    return axios
+      .post("/api/Deportista/DeleteDeportista", { id }, config)
+      .then((res) => {
+        alert(res.data);
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        return false;
       });
   },
 };

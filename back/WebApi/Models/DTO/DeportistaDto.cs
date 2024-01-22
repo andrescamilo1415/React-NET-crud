@@ -18,4 +18,10 @@ namespace pruebaMsCloud.Models.DTO
         public string telefono { get; set; }
 
     }
+
+    public class DeportistaIdDto
+    {
+        public Guid id { get; set; }
+
+    }
 }

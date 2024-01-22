@@ -46,6 +46,32 @@ namespace pruebaMsCloud.Services.Implements
 
         }
 
+        public async Task<bool> DeleteDeportista(Guid id)
+        {
+            var deportista = await _contexto.Deportistas.FirstOrDefaultAsync(x => x.Id == id);
+            if (deportista != null)
+            {
+                _contexto.Deportistas.Remove(deportista);
+                await _contexto.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> EditDeportista(DeportistaDto obj)
+        {
+            var deportista = await _contexto.Deportistas.FirstOrDefaultAsync(x => x.Id == obj.id);
+            if (deportista != null)
+            {
+                deportista.Nombre = obj.nombre;
+                deportista.Email = obj.email;
+                deportista.Telefono = obj.telefono;
+                await _contexto.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+
         public async Task<object[]> GetDeportistas(PaginadoDto data)
         {
             var obj = new object[2];
